@@ -4,13 +4,13 @@ def arg_rules(type_ : type, max_length : int, contain : list):
             result = your_func(value)
             for element in contain:
                 if  not (element in result):
-                    print("Результа виконання ", your_func.__name__, " не містить ", contain)
+                    print("Аргумент функції ", your_func.__name__, " не містить ", contain)
                     return False
             if type(result) != type_:
-                print("Результа виконання ", your_func.__name__, " не є ", type_)
+                print("Аргумент функції ", your_func.__name__, " не є ", type_)
                 return False
             elif len(value) > max_length:
-                print("Результа виконання ", your_func.__name__, " перевищує ", max_length)
+                print("Довжина аргументу функції", your_func.__name__, " перевищує ", max_length)
                 return False
             else:
                 return result
