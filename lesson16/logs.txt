@@ -1,0 +1,3 @@
+Zero division attempt in fucnction div
+Zero division attempt in fucnction div
+Zero division attempt in fucnction div
