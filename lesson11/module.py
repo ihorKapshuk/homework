@@ -27,6 +27,7 @@ def find_record(value, phonebook_name):
         records_list = json.load(get_records)
     if len(records_list) == 0:
         print("Телефонна книга пуста!")
+        return 0
     else:
         for record in records_list:
             full_name = record["first_name"] + " " + record["last_name"]
@@ -34,9 +35,11 @@ def find_record(value, phonebook_name):
                 print("Запис знайдено!")
                 for k, v in record.items():
                     print(k, " : ", v)
-                break
+                return 1
+                
         else:
             print("Запис не знайдено!")
+            return 2
 
 def delete_record(tel_number, phonebook_name):
     with open(phonebook_name) as get_records:
