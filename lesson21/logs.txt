@@ -1,0 +1,6 @@
+Call : 1
+Method : w
+Work time : 0.005299923941493034 ms
+Call : 2
+Method : r
+Work time : 0.03729993477463722 ms
