@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}{% endblock %}</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="http://127.0.0.1:8000/polls/">Головна</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/polls/child/">Дитина</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/polls/form/">Форма</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2024</p>
+    
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+    
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="http://127.0.0.1:8000/polls/" class="nav-link px-2 text-body-secondary">Головна</a></li>
+          <li class="nav-item"><a href="http://127.0.0.1:8000/polls/child/" class="nav-link px-2 text-body-secondary">Дитина</a></li>
+          <li class="nav-item"><a href="http://127.0.0.1:8000/polls/form/" class="nav-link px-2 text-body-secondary">Форма</a></li>
+        </ul>
+      </footer>
+</footer>
+</body>
+</html>

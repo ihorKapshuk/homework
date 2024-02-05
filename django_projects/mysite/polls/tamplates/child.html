@@ -1,0 +1,13 @@
+{% extends "simple.html" %}
+
+{% block title %}Дитина{% endblock %}
+
+{% block content %}
+<div id="content" class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>Це дитина</h1>
+    {% for user in users_data %}
+        <h2>{{ user.first_name }}</h2>
+        <b><i>{{ user.last_name }}</i></b>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Домашня{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div id="content" class="mt-4 p-5 bg-primary text-white rounded">
+Привіт {{ user.username }}!
+</div>
+<p><a href="{% url 'password_change' %}">Змінити пароль</a></p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+</form>
+{% else %}
+<div id="content" class="mt-4 p-5 bg-primary text-white rounded">
+<p>Ви не зайшли!</p>
+</div>
+<p><a href="{% url 'login' %}">Увійти</a></p>
+<p><a href="{% url 'signup' %}">Зареєструватись</a></p>
+<p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
+{% endif %}
+{% endblock %}
