@@ -1,0 +1,16 @@
+{% extends "simple.html" %}
+
+{% block title %}Нотатки{% endblock %}
+
+{% block content %}
+<button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:8000/polls/notes_form/'">Додати нотатку</button>
+{% for note in notes %}
+<div id="content" class="mt-4 p-5 bg-success text-white rounded">
+        <h2>Назва : {{ note.note_name }}</h2>
+        Вміст : <b>{{ note.note_text }}</b><br>
+        Категорія : <i>{{ note.note_category }}</i><br>
+        <a href="{% url 'notes_update' note.id %}">Змінити</a>
+        <a href="{% url 'notes_del' note.id %}">Видалити</a>
+</div>
+{% endfor %}
+{% endblock %}

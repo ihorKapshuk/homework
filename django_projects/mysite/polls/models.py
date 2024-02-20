@@ -6,7 +6,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
 
-class Book(models.Model):
-    name = models.CharField(max_length=30)
-    author = models.CharField(max_length=30)
-    year = models.IntegerField()
+class Notes(models.Model):
+    note_name = models.CharField(max_length=100)
+    note_text = models.CharField(max_length=200)
+    note_category = models.CharField(max_length=100)
