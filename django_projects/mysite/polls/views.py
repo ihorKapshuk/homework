@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import NameForm, NoteForm
 from .models import Person, Notes
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -25,6 +26,7 @@ def my_form(request):
         form = NameForm()
     return render(request, "form.html", {"form" : form})
 
+@login_required
 def my_notes_form(request):
     if request.method == "POST":
         form = NoteForm(request.POST)
@@ -36,6 +38,9 @@ def my_notes_form(request):
             my_obj.note_text = note_text
             note_category = form.cleaned_data["note_category"]
             my_obj.note_category = note_category
+            
+            cur_user = request.user
+            my_obj.note_user_name = cur_user.username
             my_obj.save()
             return HttpResponseRedirect("/polls/notes/")
     else:
@@ -43,9 +48,10 @@ def my_notes_form(request):
     return render(request, "notes_form.html", context={"form" : form})
 
 def my_notes(request):
-    users_data = Notes.objects.all().order_by("id").values()
+    users_data = Notes.objects.all().order_by("-id").values()
     return render(request, "notes.html", context={"notes" : users_data})
 
+@login_required
 def my_notes_update(request, id):
     obj = Notes.objects.get(id=id)
     if request.method == "POST":
@@ -57,6 +63,9 @@ def my_notes_update(request, id):
             obj.note_text = note_text
             note_category = form.cleaned_data["note_category"]
             obj.note_category = note_category
+
+            cur_user = request.user
+            obj.note_user_name = cur_user.username
             obj.save()
             return HttpResponseRedirect("/polls/notes/")
     else:

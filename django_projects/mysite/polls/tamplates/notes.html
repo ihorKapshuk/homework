@@ -4,13 +4,29 @@
 
 {% block content %}
 <button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:8000/polls/notes_form/'">Додати нотатку</button>
+{% if user.username == "admin" %}
 {% for note in notes %}
 <div id="content" class="mt-4 p-5 bg-success text-white rounded">
         <h2>Назва : {{ note.note_name }}</h2>
         Вміст : <b>{{ note.note_text }}</b><br>
         Категорія : <i>{{ note.note_category }}</i><br>
+        Користувач : <u><b>{{ note.note_user_name }}</b></u><br>
         <a href="{% url 'notes_update' note.id %}">Змінити</a>
         <a href="{% url 'notes_del' note.id %}">Видалити</a>
 </div>
 {% endfor %}
+{% else %}
+{% for note in notes %}
+{% if user.username == note.note_user_name %}
+<div id="content" class="mt-4 p-5 bg-success text-white rounded">
+        <h2>Назва : {{ note.note_name }}</h2>
+        Вміст : <b>{{ note.note_text }}</b><br>
+        Категорія : <i>{{ note.note_category }}</i><br>
+        Користувач : <u><b>{{ note.note_user_name }}</b></u><br>
+        <a href="{% url 'notes_update' note.id %}">Змінити</a>
+        <a href="{% url 'notes_del' note.id %}">Видалити</a>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}
